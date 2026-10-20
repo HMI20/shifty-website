@@ -458,3 +458,11 @@ th.us { background: var(--blue-d); color: #fff; }
   .plan-side { border: 0; border-top: 1px solid var(--border); padding: 20px 0 0; }
   .big-co { flex-direction: column; align-items: stretch; text-align: center; }
 }
+
+/* industries */
+.industries { padding: 64px 0 8px; }
+.ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+.ind-grid div { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 12px; text-align: center; font-weight: 600; display: grid; gap: 6px; box-shadow: var(--shadow); }
+.ind-grid span { font-size: 30px; }
+.ind-sub { margin-top: 24px; margin-bottom: 0; }
+@media (max-width: 700px) { .ind-grid { grid-template-columns: repeat(2, 1fr); } }

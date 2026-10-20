@@ -44,10 +44,10 @@ export function boardDemo(lang) {
 export function hotelDemo(lang) {
   const t = tr(lang);
   const s = shifts(t);
-  return `<div class="demo demo-hotel" data-demo="hotel" role="img" aria-label="${t("الفندق بيحدد عدد الناس من الموبايل", "The hotel sets headcounts from a phone")}">
+  return `<div class="demo demo-hotel" data-demo="hotel" role="img" aria-label="${t("مدير الفرع بيحدد عدد الناس من الموبايل", "A branch manager sets headcounts from a phone")}">
     <div class="phone">
       <div class="phone-notch"></div>
-      <div class="ph-head">🏨 ${t("فندق النيل", "Nile Hotel")}<small>${t("طلبات الأسبوع الجاي", "Next week's requests")}</small></div>
+      <div class="ph-head">🍽️ ${t("مطعم ليالي", "Layali Restaurant")}<small>${t("طلبات الأسبوع الجاي", "Next week's requests")}</small></div>
       ${s.map((sn, i) => `<div class="ph-row"><span>${t("الجمعة", "Friday")} · ${sn}</span><span class="stepper"><i>−</i><b data-step="${i}">0</b><i class="plus" data-plus="${i}">+</i></span></div>`).join("")}
       <div class="ph-save">${t("حفظ", "Save")}</div>
     </div>
@@ -55,7 +55,7 @@ export function hotelDemo(lang) {
     <div class="mini-board">
       <div class="mb-title">${t("لوحة الشركة", "Your board")} · ${t("الجمعة", "Friday")}</div>
       ${s.map((sn, i) => `<div class="mb-row" data-mb="${i}"><span class="mb-name sh-${i}">${sn}</span><span class="mb-cell"><em>${t("مقفول", "Closed")}</em><b>0/0</b></span></div>`).join("")}
-      <div class="toast ok" data-toast>✓ ${t("الفندق بعت طلباته", "The hotel sent its requests")}</div>
+      <div class="toast ok" data-toast>✓ ${t("المطعم بعت طلباته", "The restaurant sent its requests")}</div>
     </div>
   </div>`;
 }
@@ -66,9 +66,9 @@ export function rulesDemo(lang) {
   const P = people(t);
   const tries = [
     { who: 0, msg: t("حسن مش متاح الجمعة بالليل", "Hassan isn't available Friday nights"), cell: t("الجمعة · السهر", "Fri · Night") },
-    { who: 1, msg: t("لمياء شغالة في نفس الشفت في فندق تاني", "Lamia already works this shift at another hotel"), cell: t("السبت · الصبح", "Sat · Morning") },
-    { who: 2, msg: t("الشفت ده مليان — الفندق طالب 2 بس", "This shift is full — the hotel asked for 2"), cell: t("الحد · المسا", "Sun · Evening") },
-    { who: 3, msg: t("سارة مش مسموح لها تشتغل في الفندق ده", "Sara isn't assigned to this hotel"), cell: t("الخميس · الصبح", "Thu · Morning") },
+    { who: 1, msg: t("لمياء شغالة في نفس الشفت في مكان تاني", "Lamia already works this shift somewhere else"), cell: t("السبت · الصبح", "Sat · Morning") },
+    { who: 2, msg: t("الشفت ده مليان — الفرع طالب 2 بس", "This shift is full — the branch asked for 2"), cell: t("الحد · المسا", "Sun · Evening") },
+    { who: 3, msg: t("سارة مش مسموح لها تشتغل في المكان ده", "Sara isn't assigned to this location"), cell: t("الخميس · الصبح", "Thu · Morning") },
   ];
   return frame(`
     <div class="demo demo-rules" data-demo="rules" data-tries='${tries.length}'>
@@ -96,7 +96,7 @@ export function hoursDemo(lang) {
       <div class="dh-cards">
         <div><small>${t("ساعات الشهر", "Hours this month")}</small><b data-count="640">0</b></div>
         <div><small>${t("شفتات", "Shifts")}</small><b data-count="80">0</b></div>
-        <div><small>${t("تغطية الفنادق", "Hotel coverage")}</small><b data-count="100" data-suffix="%">0</b></div>
+        <div><small>${t("تغطية الأماكن", "Location coverage")}</small><b data-count="100" data-suffix="%">0</b></div>
       </div>
       <table class="dh-table">
         <thead><tr><th>${t("الموظف", "Employee")}</th><th>${t("الساعات", "Hours")}</th><th>${t("تعديل", "Adjust")}</th></tr></thead>

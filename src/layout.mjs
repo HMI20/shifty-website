@@ -1,5 +1,8 @@
 import { SITE_URL, APP_URL, SIGNUP_URL, DEMO_URL } from "./config.mjs";
 
+// Changes on every build so browsers fetch the new CSS/JS instead of a cached copy.
+const V = Date.now().toString(36);
+
 // Picks the Arabic or English text for the page being built.
 export const tr = (lang) => (ar, en) => (lang === "ar" ? ar : en);
 
@@ -26,7 +29,7 @@ export function page({ lang, path, title, description, body, active = "" }) {
   ];
   const link = (p) => (p.startsWith("http") ? p : href(lang, p));
   const ext = (p) => (p.startsWith("http") ? ' target="_blank" rel="noopener"' : "");
-  const fullTitle = title ? `${title} · ${t("Rosterzo", "Rosterzo")}` : t("Rosterzo — جداول شفتات شركات التوظيف", "Rosterzo — shift scheduling for staffing agencies");
+  const fullTitle = title ? `${title} · ${t("Rosterzo", "Rosterzo")}` : t("Rosterzo — جداول شفتات لأي شغل بالشفتات", "Rosterzo — shift scheduling for every shift-based business");
   return `<!doctype html>
 <html lang="${lang}" dir="${lang === "ar" ? "rtl" : "ltr"}">
 <head>
@@ -48,8 +51,8 @@ export function page({ lang, path, title, description, body, active = "" }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/styles.css">
-<script defer src="/assets/app.js"></script>
+<link rel="stylesheet" href="/assets/styles.css?v=${V}">
+<script defer src="/assets/app.js?v=${V}"></script>
 </head>
 <body class="${active ? "page-" + active : ""}">
 <a class="skip" href="#main">${t("انتقل للمحتوى", "Skip to content")}</a>
@@ -80,7 +83,7 @@ ${body}
   <div class="wrap foot-in">
     <div class="foot-brand">
       <a class="brand" href="${href(lang, "/")}">${logo(30)}<span>${t("Rosterzo", "Rosterzo")}</span></a>
-      <p>${t("جداول شفتات لشركات التوظيف اللي بتشغّل موظفين في أكتر من فندق أو موقع. اتعمل جوه شركة توظيف حقيقية، لمشاكل حقيقية.", "Shift scheduling for staffing agencies that place people across many hotels and sites. Built inside a real staffing company, for real problems.")}</p>
+      <p>${t("جداول شفتات لأي شغل بيمشي بالشفتات: فنادق، مطاعم، مستشفيات، أمن، وشركات توظيف. اتعمل جوه شركة توظيف حقيقية، لمشاكل حقيقية.", "Shift scheduling for any business that runs on shifts: hotels, restaurants, healthcare, security and staffing agencies. Built inside a real staffing company, for real problems.")}</p>
       <p class="foot-eu">🇪🇺 ${t("بياناتك متخزنة على سيرفرات في أوروبا", "Your data is stored on servers in Europe")}</p>
     </div>
     <div>

@@ -15,11 +15,11 @@ export const money = (lang, n) => {
 export function included(lang) {
   const t = tr(lang);
   return [
-    t("فنادق ومواقع بلا حدود", "Unlimited hotels and sites"),
+    t("فروع وأماكن شغل بلا حدود", "Unlimited locations"),
     t("لوحة الأسبوع بالسحب والإفلات", "Drag-and-drop weekly board"),
-    t("لينك خاص لكل فندق", "Private link for every hotel"),
+    t("لينك خاص لكل فرع أو عميل", "Private link for every location"),
     t("منع الحجز المزدوج والتعارضات", "No double bookings or clashes"),
-    t("جداول ثابتة ومتغيرة لكل فندق", "Fixed and changing schedules"),
+    t("جداول ثابتة ومتغيرة لكل مكان", "Fixed and changing schedules"),
     t("ساعات الشهر وتنزيل Excel", "Monthly hours + Excel export"),
     t("تعديل ساعات الحضور بدري ومتأخر", "Early/late hours adjustments"),
     t("صورة الجدول للواتساب", "Schedule image for WhatsApp"),
@@ -66,5 +66,5 @@ export function pricingCards(lang) {
     <div><b>🏢 ${t("أكتر من 150 موظف؟", "More than 150 employees?")}</b> ${t("كلّمنا على سعر خاص، ونقل بياناتك القديمة، وتدريب لفريقك.", "Talk to us about volume pricing, importing your data and onboarding your team.")}</div>
     <a class="btn btn-ghost" href="${href(lang, "/contact/")}?topic=business">${t("كلّمنا", "Talk to us")}</a>
   </div>
-  <p class="plans-note">${t("بتدفع بس على الموظفين اللي بيتحطوا في شفتات. الفنادق والمشرفين في مكتبك ببلاش. الأسعار باليورو ومن غير ضريبة القيمة المضافة (BTW/VAT).", "You only pay for employees who get scheduled. Hotels and your office staff are free. Prices in EUR, excluding VAT.")}</p>`;
+  <p class="plans-note">${t("بتدفع بس على الموظفين اللي بيتحطوا في شفتات. الفروع والعملاء والمشرفين في مكتبك ببلاش. الأسعار باليورو ومن غير ضريبة القيمة المضافة (BTW/VAT).", "You only pay for employees who get scheduled. Locations, clients and your office staff are free. Prices in EUR, excluding VAT.")}</p>`;
 }
