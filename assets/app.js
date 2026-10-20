@@ -61,8 +61,8 @@
       const cost = v.employees * 4;
       const x = Math.round((saved / cost) * 10) / 10;
       $('[data-res="plan"]', roi).textContent = ar
-        ? `شِفتي لـ ${v.employees} موظف بـ ${money(cost)} في الشهر` + (x >= 1 ? ` — يعني اللي هتوفّره حوالي ${x} أضعاف التكلفة.` : ".")
-        : `Shifty for ${v.employees} employees is ${money(cost)}/month` + (x >= 1 ? ` — you'd save about ${x}× the cost.` : ".");
+        ? `Rosterzo لـ ${v.employees} موظف بـ ${money(cost)} في الشهر` + (x >= 1 ? ` — يعني اللي هتوفّره حوالي ${x} أضعاف التكلفة.` : ".")
+        : `Rosterzo for ${v.employees} employees is ${money(cost)}/month` + (x >= 1 ? ` — you'd save about ${x}× the cost.` : ".");
     };
     roi.addEventListener("input", update);
     update();

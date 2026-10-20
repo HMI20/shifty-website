@@ -22,13 +22,13 @@ export function home(lang) {
     {
       id: "rules", tag: t("ولا غلطة", "Zero mistakes"), demo: rulesDemo(lang),
       title: t("الأخطاء اللي بتكلفك فلوس… مبقتش ممكنة.", "The mistakes that cost you money can't happen anymore."),
-      text: t("نفس الموظف في فندقين في نفس الوقت؟ حد في شفت هو قال إنه مش فاضي فيه؟ عدد أكتر من اللي الفندق طلبه؟ شِفتي بيرفض ده تلقائياً — مش بس على الشاشة، لكن في قاعدة البيانات نفسها.", "The same person in two hotels at once? Someone in a shift they said they can't do? More people than the hotel asked for? Shifty refuses all of it — not just on screen, but in the database itself."),
+      text: t("نفس الموظف في فندقين في نفس الوقت؟ حد في شفت هو قال إنه مش فاضي فيه؟ عدد أكتر من اللي الفندق طلبه؟ Rosterzo بيرفض ده تلقائياً — مش بس على الشاشة، لكن في قاعدة البيانات نفسها.", "The same person in two hotels at once? Someone in a shift they said they can't do? More people than the hotel asked for? Rosterzo refuses all of it — not just on screen, but in the database itself."),
       points: [t("مفيش حجز مزدوج في أي فندق", "No double booking across any hotel"), t("أيام وشفتات كل موظف مش متاح فيها", "Each employee's unavailable shifts"), t("كل موظف يشتغل بس في الفنادق المسموحة له", "Employees only work at their allowed hotels"), t("وانت بتسحب، الخانات الممنوعة بتتخطط", "While dragging, blocked cells are striped")],
     },
     {
       id: "hours", tag: t("الساعات", "Hours"), demo: hoursDemo(lang),
       title: t("آخر الشهر؟ الساعات جاهزة.", "End of the month? Hours are ready."),
-      text: t("كل فندق له مواعيد شفتات خاصة بيه، وشِفتي بيحسب ساعات كل موظف وكل فندق لوحده. حد جه بدري أو مشي متأخر؟ زوّد أو قلّل نص ساعة، وانقلها لزميله في نفس الخطوة.", "Every hotel has its own shift times, and Shifty counts the hours per employee and per hotel for you. Someone came early or left late? Add or remove half-hours and move them to the colleague next to them in the same step."),
+      text: t("كل فندق له مواعيد شفتات خاصة بيه، وRosterzo بيحسب ساعات كل موظف وكل فندق لوحده. حد جه بدري أو مشي متأخر؟ زوّد أو قلّل نص ساعة، وانقلها لزميله في نفس الخطوة.", "Every hotel has its own shift times, and Rosterzo counts the hours per employee and per hotel for you. Someone came early or left late? Add or remove half-hours and move them to the colleague next to them in the same step."),
       points: [t("ملخص الشهر لكل موظف ولكل فندق", "Monthly summary per employee and per hotel"), t("نسبة تغطية كل فندق", "Coverage percentage per hotel"), t("تنزيل Excel للمحاسب في ثانية", "Excel download for your accountant"), t("تغيير المواعيد مش بيبوّظ الشهور اللي فاتت", "Changing times never rewrites the past")],
     },
     {
@@ -63,7 +63,7 @@ export function home(lang) {
     <div class="hero-copy">
       <span class="pill">🎁 ${t("تجربة مجانية 7 أيام — من غير فيزا", "7-day free trial — no credit card")}</span>
       <h1>${t("جداول شفتات كل الفنادق<br><span class=\"grad\">في دقايق، مش ساعات.</span>", "Every hotel's shift schedule.<br><span class=\"grad\">Done in minutes, not hours.</span>")}</h1>
-      <p class="lead">${t("شِفتي معمول مخصوص لشركات التوظيف اللي بتشغّل موظفين في أكتر من فندق. الفنادق بتطلب، وانت بتوزّع بالسحب، والبرنامج بيمنع أي غلطة ويحسب الساعات لوحده.", "Shifty is built for staffing agencies that place people across many hotels. Hotels send requests, you assign with drag and drop, and Shifty blocks mistakes and counts the hours for you.")}</p>
+      <p class="lead">${t("Rosterzo معمول مخصوص لشركات التوظيف اللي بتشغّل موظفين في أكتر من فندق. الفنادق بتطلب، وانت بتوزّع بالسحب، والبرنامج بيمنع أي غلطة ويحسب الساعات لوحده.", "Rosterzo is built for staffing agencies that place people across many hotels. Hotels send requests, you assign with drag and drop, and Rosterzo blocks mistakes and counts the hours for you.")}</p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-lg" href="${SIGNUP_URL}">${t("ابدأ تجربتك المجانية", "Start your free trial")} <span class="arr">${t("←", "→")}</span></a>
         <a class="btn btn-glass btn-lg" href="${DEMO_URL}" target="_blank" rel="noopener">▶ ${t("جرّبه دلوقتي من غير تسجيل", "Try it now — no signup")}</a>
@@ -72,8 +72,8 @@ export function home(lang) {
         <li>✓ ${t("من غير فيزا", "No credit card")}</li>
         <li>✓ ${t("شغال على الموبايل", "Works on your phone")}</li>
         <li>✓ ${t("بياناتك في أوروبا", "Data hosted in the EU")}</li>
+        <li>✓ ${t("عربي • English • Nederlands", "English • Nederlands • عربي")}</li>
       </ul>
-      ${lang === "en" ? `<p class="hero-note">ℹ️ The app's interface is currently in Arabic. English and Dutch are on the way — <a href="${href(lang, "/contact/")}?topic=language">get notified</a>.</p>` : ""}
     </div>
     <div class="hero-visual">${boardDemo(lang).replace('data-demo="board"', 'data-demo="board" data-hero')}</div>
   </div>
@@ -96,7 +96,7 @@ export function home(lang) {
       <div class="pain-card"><span>📞</span><h3>${t("مكالمات ورسايل مالهاش آخر", "Endless calls and messages")}</h3><p>${t("كل فندق بيبعت طلباته بطريقة، والتغييرات بتضيع في الشات.", "Every hotel sends requests differently, and changes get lost in chats.")}</p></div>
       <div class="pain-card"><span>💸</span><h3>${t("غلطة واحدة بتكلف", "One mistake costs money")}</h3><p>${t("موظف في مكانين، أو شفت فاضي، أو ساعات محسوبة غلط آخر الشهر.", "Someone booked twice, a shift left empty, or hours counted wrong at month-end.")}</p></div>
     </div>
-    <p class="pain-answer">${t("شِفتي بيحل التلاتة. 👇", "Shifty fixes all three. 👇")}</p>
+    <p class="pain-answer">${t("Rosterzo بيحل التلاتة. 👇", "Rosterzo fixes all three. 👇")}</p>
   </div>
 </section>
 
@@ -145,7 +145,7 @@ export function home(lang) {
   <div class="wrap roi-in">
     <div class="roi-copy">
       <h2 class="sec-title">${t("احسب هتوفّر قد إيه", "See how much you'd save")}</h2>
-      <p>${t("حرّك الأرقام على حسب شركتك. الحساب تقديري، على افتراض إن شِفتي بيوفّر حوالي 70% من وقت عمل الجداول ومتابعة الساعات.", "Adjust to match your agency. This is an estimate, assuming Shifty saves about 70% of the time spent on schedules and hours.")}</p>
+      <p>${t("حرّك الأرقام على حسب شركتك. الحساب تقديري، على افتراض إن Rosterzo بيوفّر حوالي 70% من وقت عمل الجداول ومتابعة الساعات.", "Adjust to match your agency. This is an estimate, assuming Rosterzo saves about 70% of the time spent on schedules and hours.")}</p>
     </div>
     <form class="roi-card" data-roi onsubmit="return false">
       <label>${t("عدد الموظفين", "Employees")} <output data-out="employees">25</output><input type="range" name="employees" min="1" max="200" value="25"></label>
@@ -162,10 +162,10 @@ export function home(lang) {
 
 <section class="compare">
   <div class="wrap">
-    <h2 class="sec-title">${t("شِفتي مقابل الطريقة القديمة", "Shifty vs. the old way")}</h2>
+    <h2 class="sec-title">${t("Rosterzo مقابل الطريقة القديمة", "Rosterzo vs. the old way")}</h2>
     <div class="table-wrap">
     <table>
-      <thead><tr><th></th><th>${t("Excel + واتساب", "Spreadsheets + WhatsApp")}</th><th class="us">${t("شِفتي", "Shifty")}</th></tr></thead>
+      <thead><tr><th></th><th>${t("Excel + واتساب", "Spreadsheets + WhatsApp")}</th><th class="us">${t("Rosterzo", "Rosterzo")}</th></tr></thead>
       <tbody>
         <tr><td>${t("طلبات الفنادق", "Hotel requests")}</td><td>${t("مكالمات ورسايل", "Calls and messages")}</td><td class="us">${t("لينك لكل فندق", "A link per hotel")}</td></tr>
         <tr><td>${t("الحجز المزدوج", "Double bookings")}</td><td>${t("بيحصل ومحدش بياخد باله", "Happen unnoticed")}</td><td class="us">${t("مستحيل", "Impossible")}</td></tr>
@@ -182,8 +182,8 @@ export function home(lang) {
   <div class="wrap story-in">
     <div class="quote-mark" aria-hidden="true">“</div>
     <blockquote>
-      <p>${t("إحنا شركة توظيف بنشغّل موظفين في كذا فندق. كنا بنضيّع ساعات كل أسبوع في الجداول، وغلطة واحدة كانت بتعمل مشكلة مع الفندق. عملنا شِفتي لنفسنا الأول — ودلوقتي بنعمل الأسبوع كله في دقايق.", "We're a staffing agency placing people in several hotels. We lost hours every week on schedules, and one mistake meant trouble with a hotel. We built Shifty for ourselves first — now we do the whole week in minutes.")}</p>
-      <footer>${t("— مؤسس شِفتي", "— Founder of Shifty")}</footer>
+      <p>${t("إحنا شركة توظيف بنشغّل موظفين في كذا فندق. كنا بنضيّع ساعات كل أسبوع في الجداول، وغلطة واحدة كانت بتعمل مشكلة مع الفندق. عملنا Rosterzo لنفسنا الأول — ودلوقتي بنعمل الأسبوع كله في دقايق.", "We're a staffing agency placing people in several hotels. We lost hours every week on schedules, and one mistake meant trouble with a hotel. We built Rosterzo for ourselves first — now we do the whole week in minutes.")}</p>
+      <footer>${t("— مؤسس Rosterzo", "— Founder of Rosterzo")}</footer>
     </blockquote>
   </div>
 </section>
@@ -200,7 +200,6 @@ export function home(lang) {
   <div class="wrap">
     <h2 class="sec-title">${t("جاي قريب", "Coming soon")}</h2>
     <div class="road-grid">
-      <div><span>🌍</span>${t("البرنامج بالإنجليزي والهولندي", "English and Dutch interface")}</div>
       <div><span>📱</span>${t("أبلكيشن للموظفين يشوفوا شفتاتهم", "An app for employees to see their shifts")}</div>
       <div><span>✉️</span>${t("إيميل أسبوعي لكل موظف بجدوله", "A weekly email to every employee")}</div>
       <div><span>👥</span>${t("مشرفين بصلاحيات", "Supervisors with roles")}</div>
@@ -218,7 +217,7 @@ export function home(lang) {
 <section class="final-cta">
   <div class="wrap final-in">
     <h2>${t("الأسبوع الجاي ممكن يتعمل في 10 دقايق.", "Next week's schedule could take 10 minutes.")}</h2>
-    <p>${t("جرّب شِفتي ببلاش لمدة أسبوع. لو عجبك كلّمنا، ولو معجبكش مش هتدفع حاجة.", "Try Shifty free for a week. Like it? Talk to us. Don't? You pay nothing.")}</p>
+    <p>${t("جرّب Rosterzo ببلاش لمدة أسبوع. لو عجبك كلّمنا، ولو معجبكش مش هتدفع حاجة.", "Try Rosterzo free for a week. Like it? Talk to us. Don't? You pay nothing.")}</p>
     <div class="hero-ctas center">
       <a class="btn btn-primary btn-lg" href="${SIGNUP_URL}">${t("ابدأ تجربتك المجانية", "Start your free trial")}</a>
       <a class="btn btn-glass btn-lg" href="${href(lang, "/contact/")}?topic=demo">${t("احجز عرض مع فريقنا", "Book a demo with us")}</a>

@@ -13,10 +13,10 @@ const write = (file, text) => { mkdirSync(dirname(join(out, file)), { recursive:
 
 const routes = [
   { path: "/", render: home, active: "", title: () => "", desc: (t) => t("جداول شفتات لشركات التوظيف اللي بتشغّل موظفين في أكتر من فندق: طلبات الفنادق بلينك، توزيع بالسحب، منع الحجز المزدوج، وساعات الشهر جاهزة. جرّبه ببلاش 7 أيام.", "Shift scheduling for staffing agencies working across many hotels: hotel requests by link, drag-and-drop scheduling, no double bookings, monthly hours ready. Free for 7 days.") },
-  { path: "/pricing/", render: pricing, active: "pricing", title: (t) => t("الأسعار", "Pricing"), desc: (t) => t("شِفتي بـ 4€ لكل موظف في الشهر، بكل المميزات. خصم 30% على أول سنة في الاشتراك السنوي. تجربة مجانية 7 أيام.", "Shifty costs €4 per employee per month with every feature included. 30% off the first year on yearly billing. 7-day free trial.") },
-  { path: "/contact/", render: contact, active: "contact", title: (t) => t("تواصل معنا", "Contact"), desc: (t) => t("كلّمنا عشان تشترك، أو تحجز عرض، أو تسأل أي سؤال عن شِفتي.", "Contact us to subscribe, book a demo or ask anything about Shifty.") },
-  { path: "/privacy/", render: privacy, active: "", title: (t) => t("سياسة الخصوصية", "Privacy policy"), desc: (t) => t("إزاي شِفتي بيتعامل مع بياناتك.", "How Shifty handles your data.") },
-  { path: "/terms/", render: terms, active: "", title: (t) => t("شروط الاستخدام", "Terms of use"), desc: (t) => t("شروط استخدام شِفتي والتجربة المجانية.", "Shifty terms of use and free trial.") },
+  { path: "/pricing/", render: pricing, active: "pricing", title: (t) => t("الأسعار", "Pricing"), desc: (t) => t("Rosterzo بـ 4€ لكل موظف في الشهر، بكل المميزات. خصم 30% على أول سنة في الاشتراك السنوي. تجربة مجانية 7 أيام.", "Rosterzo costs €4 per employee per month with every feature included. 30% off the first year on yearly billing. 7-day free trial.") },
+  { path: "/contact/", render: contact, active: "contact", title: (t) => t("تواصل معنا", "Contact"), desc: (t) => t("كلّمنا عشان تشترك، أو تحجز عرض، أو تسأل أي سؤال عن Rosterzo.", "Contact us to subscribe, book a demo or ask anything about Rosterzo.") },
+  { path: "/privacy/", render: privacy, active: "", title: (t) => t("سياسة الخصوصية", "Privacy policy"), desc: (t) => t("إزاي Rosterzo بيتعامل مع بياناتك.", "How Rosterzo handles your data.") },
+  { path: "/terms/", render: terms, active: "", title: (t) => t("شروط الاستخدام", "Terms of use"), desc: (t) => t("شروط استخدام Rosterzo والتجربة المجانية.", "Rosterzo terms of use and free trial.") },
 ];
 
 for (const lang of ["ar", "en"]) {

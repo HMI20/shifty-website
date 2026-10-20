@@ -83,8 +83,6 @@ h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 18px; }
 .hero-ctas.center { justify-content: center; }
 .hero-trust { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; color: rgba(255, 255, 255, .7); font-size: 15px; }
-.hero-note { margin-top: 18px; font-size: 14px; color: rgba(255, 255, 255, .65); background: rgba(255, 255, 255, .06); border-radius: 10px; padding: 10px 14px; }
-.hero-note a { color: #ffd27a; }
 .hero-visual { transform: perspective(1400px) rotateY(-6deg) rotateX(3deg); }
 [dir=ltr] .hero-visual { transform: perspective(1400px) rotateY(6deg) rotateX(3deg); }
 .hero-visual .screen { box-shadow: 0 40px 80px -20px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .1); }

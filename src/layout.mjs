@@ -26,7 +26,7 @@ export function page({ lang, path, title, description, body, active = "" }) {
   ];
   const link = (p) => (p.startsWith("http") ? p : href(lang, p));
   const ext = (p) => (p.startsWith("http") ? ' target="_blank" rel="noopener"' : "");
-  const fullTitle = title ? `${title} · ${t("شِفتي", "Shifty")}` : t("شِفتي — جداول شفتات شركات التوظيف", "Shifty — shift scheduling for staffing agencies");
+  const fullTitle = title ? `${title} · ${t("Rosterzo", "Rosterzo")}` : t("Rosterzo — جداول شفتات شركات التوظيف", "Rosterzo — shift scheduling for staffing agencies");
   return `<!doctype html>
 <html lang="${lang}" dir="${lang === "ar" ? "rtl" : "ltr"}">
 <head>
@@ -55,7 +55,7 @@ export function page({ lang, path, title, description, body, active = "" }) {
 <a class="skip" href="#main">${t("انتقل للمحتوى", "Skip to content")}</a>
 <header class="nav" id="top">
   <div class="wrap nav-in">
-    <a class="brand" href="${href(lang, "/")}" aria-label="${t("شِفتي — الرئيسية", "Shifty — home")}">${logo()}<span>${t("شِفتي", "Shifty")}</span></a>
+    <a class="brand" href="${href(lang, "/")}" aria-label="${t("Rosterzo — الرئيسية", "Rosterzo — home")}">${logo()}<span>${t("Rosterzo", "Rosterzo")}</span></a>
     <nav class="nav-links" aria-label="${t("القائمة", "Menu")}">
       ${nav.map(([k, p, label]) => `<a href="${link(p)}"${ext(p)}${k === active ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
     </nav>
@@ -79,7 +79,7 @@ ${body}
 <footer class="foot">
   <div class="wrap foot-in">
     <div class="foot-brand">
-      <a class="brand" href="${href(lang, "/")}">${logo(30)}<span>${t("شِفتي", "Shifty")}</span></a>
+      <a class="brand" href="${href(lang, "/")}">${logo(30)}<span>${t("Rosterzo", "Rosterzo")}</span></a>
       <p>${t("جداول شفتات لشركات التوظيف اللي بتشغّل موظفين في أكتر من فندق أو موقع. اتعمل جوه شركة توظيف حقيقية، لمشاكل حقيقية.", "Shift scheduling for staffing agencies that place people across many hotels and sites. Built inside a real staffing company, for real problems.")}</p>
       <p class="foot-eu">🇪🇺 ${t("بياناتك متخزنة على سيرفرات في أوروبا", "Your data is stored on servers in Europe")}</p>
     </div>
@@ -98,7 +98,7 @@ ${body}
       <a href="${href(lang, "/terms/")}">${t("الشروط", "Terms")}</a>
     </div>
   </div>
-  <div class="wrap foot-bottom">© <span data-year>2026</span> ${t("شِفتي", "Shifty")}. ${t("كل الحقوق محفوظة.", "All rights reserved.")}</div>
+  <div class="wrap foot-bottom">© <span data-year>2026</span> ${t("Rosterzo", "Rosterzo")}. ${t("كل الحقوق محفوظة.", "All rights reserved.")}</div>
 </footer>
 </body>
 </html>

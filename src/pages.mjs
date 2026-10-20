@@ -49,7 +49,6 @@ export function contact(lang) {
     ["demo", t("عايز عرض مع حد من الفريق", "I'd like a demo with the team")],
     ["business", t("شركة أكتر من 150 موظف", "Agency with 150+ employees")],
     ["trial", t("محتاج مساعدة في التجربة", "Help with my trial")],
-    ["language", t("بلّغوني لما الإنجليزي/الهولندي يجهز", "Tell me when English/Dutch is ready")],
     ["other", t("حاجة تانية", "Something else")],
   ];
   return `
@@ -117,7 +116,7 @@ const legal = (lang, title, updated, sections) => {
 export function privacy(lang) {
   const t = tr(lang);
   return legal(lang, t("سياسة الخصوصية", "Privacy policy"), t("20 أكتوبر 2026", "20 October 2026"), [
-    [t("مين إحنا", "Who we are"), t("شِفتي برنامج لجداول الشفتات لشركات التوظيف. السياسة دي بتشرح إزاي بنتعامل مع البيانات في الموقع ده وفي البرنامج.", "Shifty is shift-scheduling software for staffing agencies. This policy explains how we handle data on this website and in the app.")],
+    [t("مين إحنا", "Who we are"), t("Rosterzo برنامج لجداول الشفتات لشركات التوظيف. السياسة دي بتشرح إزاي بنتعامل مع البيانات في الموقع ده وفي البرنامج.", "Rosterzo is shift-scheduling software for staffing agencies. This policy explains how we handle data on this website and in the app.")],
     [t("البيانات اللي بنجمعها", "What we collect"), t("من فورم التواصل: الاسم، والشركة، والإيميل، والموبايل، وعدد الموظفين، ورسالتك. في البرنامج: إيميل الحساب، وبيانات شركتك اللي انت بتدخلها (فنادق، موظفين، شفتات، ساعات).", "From the contact form: name, company, email, phone, company size and your message. In the app: your account email and the company data you enter (hotels, employees, shifts, hours).")],
     [t("ليه بنجمعها", "Why"), t("عشان نرد عليك، ونشغّل البرنامج ليك. مش بنبيع بياناتك ولا بنستخدمها في إعلانات.", "To reply to you and to run the service for you. We never sell your data or use it for advertising.")],
     [t("فين بتتخزن", "Where it is stored"), t("على سيرفرات Supabase في أوروبا، والموقع مستضاف على Cloudflare. كل شركة شايفة بياناتها بس.", "On Supabase servers in Europe; the website is hosted on Cloudflare. Each company can only access its own data.")],
