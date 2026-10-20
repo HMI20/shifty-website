@@ -1,43 +1,28 @@
 import { tr, href } from "./layout.mjs";
 import { SIGNUP_URL, SUPABASE_URL, SUPABASE_KEY } from "./config.mjs";
-import { pricingCards } from "./plans.mjs";
+import { pricingCards, money, PRICE, YEARLY_FIRST_YEAR_DISCOUNT } from "./plans.mjs";
 import { faq } from "./faq.mjs";
 
 export function pricing(lang) {
   const t = tr(lang);
-  const yes = "✓", no = "—", soon = t("قريباً", "Soon");
-  const rows = [
-    [t("لوحة الأسبوع بالسحب والإفلات", "Drag-and-drop weekly board"), yes, yes, yes],
-    [t("لينك خاص لكل فندق", "Private hotel links"), yes, yes, yes],
-    [t("منع الحجز المزدوج والتعارضات", "Double-booking and clash protection"), yes, yes, yes],
-    [t("ساعات الشهر + Excel", "Monthly hours + Excel"), yes, yes, yes],
-    [t("صورة الجدول للواتساب", "Schedule image for WhatsApp"), yes, yes, yes],
-    [t("شاشة الموبايل", "Phone layout"), yes, yes, yes],
-    [t("عدد الموظفين", "Employees"), "15", "50", t("بلا حدود", "Unlimited")],
-    [t("عدد الفنادق / المواقع", "Hotels / sites"), "3", t("بلا حدود", "Unlimited"), t("بلا حدود", "Unlimited")],
-    [t("جداول ثابتة بالقالب", "Fixed schedule templates"), yes, yes, yes],
-    [t("تقارير تغطية الفنادق", "Hotel coverage reports"), no, yes, yes],
-    [t("دعم سريع", "Priority support"), no, yes, yes],
-    [t("نقل بياناتك القديمة", "Data import done for you"), no, no, yes],
-    [t("تدريب الفريق", "Team onboarding"), no, no, yes],
-    [t("مشرفين بصلاحيات", "Supervisor roles"), no, soon, soon],
-  ];
+  const m = (n) => money(lang, n);
+  const examples = [10, 30, 75, 150];
   return `
 <section class="page-head">
   <div class="wrap">
-    <span class="pill">🎁 ${t("كل الباقات بتبدأ بأسبوع ببلاش", "Every plan starts with a free week")}</span>
+    <span class="pill">🎁 ${t("أول أسبوع ببلاش — من غير فيزا", "Your first week is free — no credit card")}</span>
     <h1>${t("أسعار على قد شركتك", "Pricing that fits your agency")}</h1>
-    <p class="lead">${t("سعر ثابت كل شهر — مش لكل موظف. ادفع على قد حجم شركتك، وكبّر وقت ما تحتاج.", "A flat monthly price — not per user. Pay for your size and grow when you need to.")}</p>
+    <p class="lead">${t(`${m(PRICE)} لكل موظف في الشهر، وكل المميزات متضمنة. شركتك تكبر أو تصغر؟ الفاتورة بتتغير معاها.`, `${m(PRICE)} per employee per month, with every feature included. Your agency grows or shrinks? So does your bill.`)}</p>
   </div>
 </section>
 <section class="pricing-page">
   <div class="wrap">
     ${pricingCards(lang)}
-    <h2 class="sec-title small">${t("مقارنة الباقات", "Compare plans")}</h2>
+    <h2 class="sec-title small">${t("أمثلة على السعر", "Price examples")}</h2>
     <div class="table-wrap">
       <table class="cmp">
-        <thead><tr><th></th><th>${t("البداية", "Starter")}</th><th class="us">${t("المحترفين", "Pro")}</th><th>${t("الشركات", "Business")}</th></tr></thead>
-        <tbody>${rows.map(([n, a, b, c]) => `<tr><td>${n}</td><td>${a}</td><td class="us">${b}</td><td>${c}</td></tr>`).join("")}</tbody>
+        <thead><tr><th>${t("عدد الموظفين", "Employees")}</th><th>${t("شهري", "Monthly")}</th><th class="us">${t("سنوي — أول سنة", "Yearly — year one")}</th></tr></thead>
+        <tbody>${examples.map((n) => `<tr><td>${n}</td><td>${t(`${m(n * PRICE)} في الشهر`, `${m(n * PRICE)} / month`)}</td><td class="us">${t(`${m(Math.round(n * PRICE * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} في السنة`, `${m(Math.round(n * PRICE * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} / year`)} <s>${m(n * PRICE * 12)}</s></td></tr>`).join("")}</tbody>
       </table>
     </div>
     <div class="pay-box">
@@ -62,7 +47,7 @@ export function contact(lang) {
   const topics = [
     ["subscribe", t("عايز أشترك بعد التجربة", "I want to subscribe after my trial")],
     ["demo", t("عايز عرض مع حد من الفريق", "I'd like a demo with the team")],
-    ["business", t("باقة الشركات", "Business plan")],
+    ["business", t("شركة أكتر من 150 موظف", "Agency with 150+ employees")],
     ["trial", t("محتاج مساعدة في التجربة", "Help with my trial")],
     ["language", t("بلّغوني لما الإنجليزي/الهولندي يجهز", "Tell me when English/Dutch is ready")],
     ["other", t("حاجة تانية", "Something else")],
@@ -145,8 +130,8 @@ export function terms(lang) {
   const t = tr(lang);
   return legal(lang, t("شروط الاستخدام", "Terms of use"), t("20 أكتوبر 2026", "20 October 2026"), [
     [t("التجربة المجانية", "Free trial"), t("كل شركة جديدة بتاخد 7 أيام تجربة مجانية بكل المميزات، من غير فيزا. بعد التجربة الحساب بيتقفل للتعديل لحد الاشتراك، وبياناتك مش بتتمسح.", "Every new company gets a 7-day free trial with all features and no card. Afterwards the account is paused for editing until you subscribe; your data is not deleted.")],
-    [t("الاشتراك والدفع", "Subscription and payment"), t("الاشتراك شهري أو سنوي حسب الباقة، والأسعار باليورو من غير الضريبة. الدفع حالياً بالتحويل البنكي بفاتورة.", "Plans are billed monthly or yearly; prices are in EUR excluding VAT. Payment is currently by bank transfer against an invoice.")],
-    [t("الإلغاء", "Cancellation"), t("تقدر توقف الاشتراك الشهري في أي وقت، والإلغاء بيسري من الشهر اللي بعده.", "Monthly plans can be cancelled anytime, effective from the next billing month.")],
+    [t("الاشتراك والدفع", "Subscription and payment"), t("السعر على كل موظف بيتحط في شفتات، شهري أو سنوي. السنوي عليه خصم 30% على أول سنة بس، وبعدها بيتجدد بالسعر العادي إلا لو اتفقنا على غير كده. الأسعار باليورو من غير الضريبة، والدفع حالياً بالتحويل البنكي بفاتورة.", "Pricing is per scheduled employee, billed monthly or yearly. Yearly billing gets 30% off the first year only, then renews at the regular price unless agreed otherwise. Prices are in EUR excluding VAT; payment is currently by bank transfer against an invoice.")],
+    [t("الإلغاء", "Cancellation"), t("تقدر توقف الاشتراك الشهري في أي وقت، والإلغاء بيسري من الشهر اللي بعده.", "Monthly billing can be cancelled anytime, effective from the next billing month.")],
     [t("بياناتك", "Your data"), t("بياناتك ملكك. تقدر تطلب نسخة منها أو مسحها في أي وقت.", "Your data belongs to you. You can request an export or deletion at any time.")],
     [t("الاستخدام المسموح", "Acceptable use"), t("ممنوع استخدام البرنامج في أي حاجة مخالفة للقانون أو محاولة الوصول لبيانات شركات تانية.", "Don't use the service for anything unlawful or try to access other companies' data.")],
     [t("المسؤولية", "Liability"), t("بنعمل كل اللي نقدر عليه عشان البرنامج يفضل شغال وبياناتك في أمان، لكن البرنامج بيتقدّم «زي ما هو». الشروط دي ممكن تتحدث، وهنبلغك بأي تغيير مهم.", "We do our best to keep the service running and your data safe, but it is provided “as is”. These terms may be updated; we'll tell you about important changes.")],

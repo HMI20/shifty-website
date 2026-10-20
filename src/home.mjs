@@ -148,7 +148,7 @@ export function home(lang) {
       <p>${t("حرّك الأرقام على حسب شركتك. الحساب تقديري، على افتراض إن شِفتي بيوفّر حوالي 70% من وقت عمل الجداول ومتابعة الساعات.", "Adjust to match your agency. This is an estimate, assuming Shifty saves about 70% of the time spent on schedules and hours.")}</p>
     </div>
     <form class="roi-card" data-roi onsubmit="return false">
-      <label>${t("عدد الفنادق / المواقع", "Hotels / sites")} <output data-out="hotels">5</output><input type="range" name="hotels" min="1" max="30" value="5"></label>
+      <label>${t("عدد الموظفين", "Employees")} <output data-out="employees">25</output><input type="range" name="employees" min="1" max="200" value="25"></label>
       <label>${t("ساعات عمل الجداول في الأسبوع", "Hours spent scheduling per week")} <output data-out="hours">8</output><input type="range" name="hours" min="1" max="40" value="8"></label>
       <label>${t("تكلفة ساعة الموظف الإداري (€)", "Admin hourly cost (€)")} <output data-out="rate">25</output><input type="range" name="rate" min="10" max="60" step="5" value="25"></label>
       <div class="roi-result">
@@ -190,8 +190,8 @@ export function home(lang) {
 
 <section class="pricing-teaser" id="pricing">
   <div class="wrap">
-    <h2 class="sec-title">${t("أسعار بسيطة. من غير مفاجآت.", "Simple pricing. No surprises.")}</h2>
-    <p class="sec-sub">${t("ابدأ مجاناً 7 أيام، وبعدين اختار الباقة اللي تناسبك.", "Start free for 7 days, then pick the plan that fits.")}</p>
+    <h2 class="sec-title">${t("سعر واحد بسيط: على قد موظفينك.", "One simple price: per employee.")}</h2>
+    <p class="sec-sub">${t("ابدأ مجاناً 7 أيام، وبعدين ادفع بس على الموظفين اللي بتشغّلهم.", "Start free for 7 days, then pay only for the people you schedule.")}</p>
     ${pricingCards(lang)}
   </div>
 </section>

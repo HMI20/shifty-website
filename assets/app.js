@@ -18,34 +18,51 @@
   });
   mnav?.addEventListener("click", (e) => { if (e.target.closest("a")) { mnav.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); } });
 
-  // ---------- pricing monthly / yearly ----------
-  $$(".billing-toggle").forEach((group) => {
-    const scope = group.parentElement;
-    group.addEventListener("click", (e) => {
+  // ---------- pricing: monthly / yearly and the per-employee total ----------
+  const money = (n) => {
+    const v = Number.isInteger(n) ? n.toLocaleString("en") : n.toFixed(2);
+    return ar ? `${v}€` : `€${v}`;
+  };
+  $$("[data-price]").forEach((box) => {
+    const scope = box.parentElement;
+    const group = $(".billing-toggle", scope);
+    const range = $("[data-emp-range]", box);
+    let mode = "monthly";
+    const update = () => {
+      const n = Number(range.value);
+      $("[data-emp]", box).textContent = n;
+      const per = Number(box.dataset[mode === "monthly" ? "priceMonthly" : "priceYearly"]);
+      const total = mode === "monthly" ? n * per : Math.round(n * per * 12);
+      $("[data-total]", box).textContent = money(total);
+      const was = $("[data-was]", box);
+      was.hidden = mode === "monthly";
+      was.textContent = money(n * Number(box.dataset.priceMonthly) * 12);
+    };
+    group?.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-billing]");
       if (!btn) return;
-      const mode = btn.dataset.billing;
+      mode = btn.dataset.billing;
       $$("[data-billing]", group).forEach((b) => b.setAttribute("aria-pressed", b === btn));
       $$("[data-monthly]", scope).forEach((el) => (el.textContent = el.dataset[mode]));
+      update();
     });
+    range.addEventListener("input", update);
+    update();
   });
 
   // ---------- savings calculator ----------
   const roi = $("[data-roi]");
   if (roi) {
-    const money = (n) => (ar ? `${n.toLocaleString("en")}€` : `€${n.toLocaleString("en")}`);
     const update = () => {
       const v = Object.fromEntries([...new FormData(roi)].map(([k, x]) => [k, Number(x)]));
       $$("[data-out]", roi).forEach((o) => (o.textContent = v[o.dataset.out]));
       const hours = Math.round(v.hours * 0.7 * 4.33);
       const saved = Math.round(hours * v.rate);
-      const plan = v.hotels <= 3 ? { name: ar ? "البداية" : "Starter", price: 29 } : { name: ar ? "المحترفين" : "Pro", price: 69 };
-      $('[data-res="time"]', roi).textContent = ar ? `${hours} ساعة` : `${hours} h`;
-      $('[data-res="money"]', roi).textContent = money(saved);
-      const x = Math.max(1, Math.round(saved / plan.price));
+      const cost = v.employees * 4;
+      const x = Math.round((saved / cost) * 10) / 10;
       $('[data-res="plan"]', roi).textContent = ar
-        ? `باقة «${plan.name}» بـ ${money(plan.price)} في الشهر — يعني اللي هتوفّره حوالي ${x} أضعاف سعرها.`
-        : `The ${plan.name} plan is ${money(plan.price)}/month — you'd save about ${x}× its price.`;
+        ? `شِفتي لـ ${v.employees} موظف بـ ${money(cost)} في الشهر` + (x >= 1 ? ` — يعني اللي هتوفّره حوالي ${x} أضعاف التكلفة.` : ".")
+        : `Shifty for ${v.employees} employees is ${money(cost)}/month` + (x >= 1 ? ` — you'd save about ${x}× the cost.` : ".");
     };
     roi.addEventListener("input", update);
     update();

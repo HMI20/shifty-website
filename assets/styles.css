@@ -438,3 +438,25 @@ th.us { background: var(--blue-d); color: #fff; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* single per-employee price */
+.plans.one { grid-template-columns: 1fr; max-width: 900px; margin-inline: auto; }
+.plans.one .plan { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; transform: none; padding: 36px; }
+.plan-main { display: flex; flex-direction: column; gap: 6px; }
+.plan-side { border-inline-start: 1px solid var(--border); padding-inline-start: 32px; }
+.plan-side h3 { font-size: 17px; }
+.plan-side .ticks { margin: 12px 0 0; }
+.plans.one .price b { font-size: 60px; }
+.calc { display: grid; gap: 8px; font-weight: 600; margin-top: 8px; }
+.calc output { color: var(--blue-d); font-size: 18px; }
+.calc input { width: 100%; accent-color: var(--blue); }
+.total { background: var(--blue-soft); border-radius: 14px; padding: 14px 16px; margin: 6px 0 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.total small { width: 100%; color: var(--muted); }
+.total b { font-size: 32px; color: var(--blue-d); unicode-bidi: isolate; }
+.total s, .cmp s { color: var(--muted); font-weight: 400; unicode-bidi: isolate; }
+.big-co { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 900px; margin: 20px auto 0; background: #fff; border: 1px dashed #b9c6e6; border-radius: 16px; padding: 18px 22px; }
+@media (max-width: 760px) {
+  .plans.one .plan { grid-template-columns: 1fr; padding: 28px 20px; gap: 20px; }
+  .plan-side { border: 0; border-top: 1px solid var(--border); padding: 20px 0 0; }
+  .big-co { flex-direction: column; align-items: stretch; text-align: center; }
+}

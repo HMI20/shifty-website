@@ -4,7 +4,7 @@ export function faq(lang, which = "general") {
   const t = tr(lang);
   const general = [
     [t("التجربة المجانية بتشتغل إزاي؟", "How does the free trial work?"),
-      t("بتعمل حساب بإيميلك، وبتستخدم شِفتي بكل مميزاته لمدة 7 أيام من غير فيزا. لو عجبك، كلّمنا ونفعّلك الباقة اللي تختارها، وبياناتك كلها بتفضل زي ما هي.", "Sign up with your email and use every feature for 7 days, no credit card. If you like it, contact us and we'll activate your plan — all your data stays exactly as it is.")],
+      t("بتعمل حساب بإيميلك، وبتستخدم شِفتي بكل مميزاته لمدة 7 أيام من غير فيزا. لو عجبك، كلّمنا ونفعّلك الاشتراك، وبياناتك كلها بتفضل زي ما هي.", "Sign up with your email and use every feature for 7 days, no credit card. If you like it, contact us and we'll activate your subscription — all your data stays exactly as it is.")],
     [t("إيه اللي بيحصل بعد الأسبوع؟", "What happens after the week?"),
       t("الحساب بيتقفل للتعديل لحد ما تشترك، لكن بياناتك مش بتتمسح. ابعتلنا من صفحة التواصل ونرجّعك في نفس اليوم.", "Your account is paused for editing until you subscribe, but nothing is deleted. Message us from the contact page and we'll get you back the same day.")],
     [t("الفنادق محتاجة تعمل حساب؟", "Do hotels need an account?"),
@@ -16,15 +16,15 @@ export function faq(lang, which = "general") {
     [t("بياناتي في أمان؟", "Is my data safe?"),
       t("بياناتك متخزنة على سيرفرات في أوروبا، وكل شركة شايفة بياناتها بس — ده متأمّن في قاعدة البيانات نفسها مش بس في الشاشة.", "Your data lives on servers in Europe, and each company can only ever see its own data — enforced in the database itself, not just the screen.")],
     [t("ينفع أنقل جداولي القديمة؟", "Can I bring my existing schedules?"),
-      t("أيوه. في باقة الشركات بننقلها إحنا، وفي باقي الباقات بنساعدك — كلّمنا.", "Yes. On Business we import it for you; on other plans we'll help — just ask.")],
+      t("أيوه، كلّمنا وهنساعدك. ولو شركتك أكتر من 150 موظف بننقلها إحنا بالكامل.", "Yes — just ask and we'll help. For agencies with 150+ employees we import it all for you.")],
   ];
   const billing = [
     [t("بدفع إزاي؟", "How do I pay?"),
       t("حالياً بالتحويل البنكي بفاتورة شهرية أو سنوية. الدفع أونلاين بالكارت جاي قريب.", "For now by bank transfer against a monthly or yearly invoice. Online card payment is coming soon.")],
-    [t("ينفع أغيّر الباقة؟", "Can I change plans?"),
-      t("في أي وقت. لو عدد موظفينك زاد بنرقّيك، ولو قلّ بننزّلك من الشهر اللي بعده.", "Anytime. Grow and we upgrade you; shrink and we move you down from the next month.")],
+    [t("لو عدد موظفيني اتغير؟", "What if my headcount changes?"),
+      t("الفاتورة بتتحسب على عدد الموظفين الفعلي. زوّد أو قلّل في أي وقت، والفرق بيظهر في الفاتورة اللي بعدها.", "You're billed for your actual number of employees. Add or remove people anytime; the difference shows on your next invoice.")],
     [t("فيه عقد أو التزام؟", "Is there a contract?"),
-      t("لأ. الاشتراك الشهري تقدر توقفه في أي وقت. السنوي بيوفّرلك شهرين.", "No. Monthly plans can be cancelled anytime. Yearly saves you two months.")],
+      t("لأ. الشهري تقدر توقفه في أي وقت. ولو دفعت سنوي بتاخد خصم 30% على أول سنة.", "No. Monthly billing can be cancelled anytime. Pay yearly and get 30% off your first year.")],
     [t("مين اللي بيتحسب «موظف»؟", "Who counts as an employee?"),
       t("أي موظف متسجل في شِفتي وبيتحط في شفتات. الفنادق ومشرفينك مش بيتحسبوا.", "Anyone in Shifty who gets scheduled into shifts. Hotels and your office staff don't count.")],
   ];
