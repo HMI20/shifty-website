@@ -42,8 +42,7 @@ export function page({ lang, path, title, description, body, active = "" }) {
 <meta property="og:title" content="${fullTitle}">
 <meta property="og:description" content="${description}">
 <meta property="og:url" content="${SITE_URL}${href(lang, path)}">
-<meta property="og:image" content="${SITE_URL}/assets/og.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0b1430">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
