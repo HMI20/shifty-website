@@ -16,7 +16,11 @@
     menuBtn.setAttribute("aria-expanded", open);
     mnav.hidden = !open;
   });
-  mnav?.addEventListener("click", (e) => { if (e.target.closest("a")) { mnav.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); } });
+  const closeMenu = () => { mnav.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); };
+  mnav?.addEventListener("click", (e) => { if (e.target.closest("a")) closeMenu(); });
+  // Escape or a tap outside the bar closes the menu too.
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && mnav && !mnav.hidden) { closeMenu(); menuBtn.focus(); } });
+  document.addEventListener("click", (e) => { if (mnav && !mnav.hidden && !e.target.closest(".nav")) closeMenu(); });
 
   // ---------- pricing: monthly / yearly and the per-employee total ----------
   const money = (n) => {

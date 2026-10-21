@@ -83,8 +83,8 @@ export function home(lang) {
   <div class="wrap strip-in">
     <div><b>7</b><span>${t("أيام تجربة ببلاش", "free trial days")}</span></div>
     <div><b>0</b><span>${t("حجز مزدوج", "double bookings")}</span></div>
-    <div><b>3</b><span>${t("شفتات في اليوم، بمواعيد كل مكان", "shifts a day, timed per location")}</span></div>
-    <div><b>375px</b><span>${t("شغال حتى على أصغر موبايل", "works on the smallest phone")}</span></div>
+    <div><b>4</b><span>${t("شفتات في اليوم كحد أقصى، بمواعيد كل مكان", "shifts a day at most, timed per location")}</span></div>
+    <div><b>3</b><span>${t("لغات: عربي وإنجليزي وهولندي", "languages: Arabic, English, Dutch")}</span></div>
   </div>
 </section>
 
