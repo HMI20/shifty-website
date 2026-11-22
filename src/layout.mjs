@@ -24,12 +24,12 @@ export function page({ lang, path, title, description, body, active = "" }) {
   const nav = [
     ["features", "/#features", t("المميزات", "Features")],
     ["pricing", "/pricing/", t("الأسعار", "Pricing")],
-    ["demo", DEMO_URL, t("جرّب العرض الحي", "Live demo")],
+    ["demo", DEMO_URL, t("جرّب العرض المباشر", "Live demo")],
     ["contact", "/contact/", t("تواصل معنا", "Contact")],
   ];
   const link = (p) => (p.startsWith("http") ? p : href(lang, p));
   const ext = (p) => (p.startsWith("http") ? ' target="_blank" rel="noopener"' : "");
-  const fullTitle = title ? `${title} · ${t("Rosterzo", "Rosterzo")}` : t("Rosterzo — جداول شفتات لأي شغل بالشفتات", "Rosterzo — shift scheduling for every shift-based business");
+  const fullTitle = title ? `${title} · ${t("Rosterzo", "Rosterzo")}` : t("Rosterzo — جداول شفتات لكل عمل يعتمد على الشفتات", "Rosterzo — shift scheduling for every shift-based business");
   return `<!doctype html>
 <html lang="${lang}" dir="${lang === "ar" ? "rtl" : "ltr"}">
 <head>
@@ -55,7 +55,7 @@ export function page({ lang, path, title, description, body, active = "" }) {
 <script defer src="/assets/app.js?v=${V}"></script>
 </head>
 <body class="${active ? "page-" + active : ""}">
-<a class="skip" href="#main">${t("انتقل للمحتوى", "Skip to content")}</a>
+<a class="skip" href="#main">${t("انتقل إلى المحتوى", "Skip to content")}</a>
 <header class="nav" id="top">
   <div class="wrap nav-in">
     <a class="brand" href="${href(lang, "/")}" aria-label="${t("Rosterzo — الرئيسية", "Rosterzo — home")}">${logo()}<span>${t("Rosterzo", "Rosterzo")}</span></a>
@@ -63,16 +63,16 @@ export function page({ lang, path, title, description, body, active = "" }) {
       ${nav.map(([k, p, label]) => `<a href="${link(p)}"${ext(p)}${k === active ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
     </nav>
     <div class="nav-actions">
-      <a class="lang" href="${href(other, path)}" hreflang="${other}" lang="${other}">${lang === "ar" ? "English" : "عربي"}</a>
+      <a class="lang" href="${href(other, path)}" hreflang="${other}" lang="${other}">${lang === "ar" ? "English" : "العربية"}</a>
       <a class="nav-login" href="${APP_URL}">${t("دخول", "Log in")}</a>
-      <a class="btn btn-primary btn-sm" href="${SIGNUP_URL}">${t("ابدأ مجاناً", "Start free")}</a>
+      <a class="btn btn-primary btn-sm" href="${SIGNUP_URL}">${t("ابدأ مجانًا", "Start free")}</a>
       <button class="menu-btn" aria-label="${t("القائمة", "Menu")}" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </div>
   <nav class="mnav" id="mnav" hidden>
     ${nav.map(([, p, label]) => `<a href="${link(p)}"${ext(p)}>${label}</a>`).join("")}
-    <a href="${APP_URL}">${t("دخول للبرنامج", "Log in to the app")}</a>
-    <a href="${href(other, path)}" lang="${other}">${lang === "ar" ? "English" : "عربي"}</a>
+    <a href="${APP_URL}">${t("الدخول إلى البرنامج", "Log in to the app")}</a>
+    <a href="${href(other, path)}" lang="${other}">${lang === "ar" ? "English" : "العربية"}</a>
     <a class="btn btn-primary" href="${SIGNUP_URL}">${t("ابدأ تجربتك المجانية — 7 أيام", "Start your 7-day free trial")}</a>
   </nav>
 </header>
@@ -83,25 +83,25 @@ ${body}
   <div class="wrap foot-in">
     <div class="foot-brand">
       <a class="brand" href="${href(lang, "/")}">${logo(30)}<span>${t("Rosterzo", "Rosterzo")}</span></a>
-      <p>${t("جداول شفتات لأي شغل بيمشي بالشفتات: فنادق، مطاعم، مستشفيات، أمن، وشركات توظيف. اتعمل جوه شركة توظيف حقيقية، لمشاكل حقيقية.", "Shift scheduling for any business that runs on shifts: hotels, restaurants, healthcare, security and staffing agencies. Built inside a real staffing company, for real problems.")}</p>
-      <p class="foot-eu">🇪🇺 ${t("بياناتك متخزنة على سيرفرات في أوروبا", "Your data is stored on servers in Europe")}</p>
+      <p>${t("جداول شفتات لكل عمل يعتمد على الشفتات: فنادق، مطاعم، مستشفيات، أمن، وشركات توظيف. صُمّم داخل شركة توظيف حقيقية، لحل مشكلات حقيقية.", "Shift scheduling for any business that runs on shifts: hotels, restaurants, healthcare, security and staffing agencies. Built inside a real staffing company, for real problems.")}</p>
+      <p class="foot-eu">🇪🇺 ${t("بياناتك مخزَّنة على خوادم في أوروبا", "Your data is stored on servers in Europe")}</p>
     </div>
     <div>
       <h4>${t("المنتج", "Product")}</h4>
       <a href="${href(lang, "/")}#features">${t("المميزات", "Features")}</a>
       <a href="${href(lang, "/pricing/")}">${t("الأسعار", "Pricing")}</a>
-      <a href="${DEMO_URL}" target="_blank" rel="noopener">${t("العرض الحي", "Live demo")}</a>
-      <a href="${APP_URL}">${t("دخول للبرنامج", "Log in")}</a>
+      <a href="${DEMO_URL}" target="_blank" rel="noopener">${t("العرض المباشر", "Live demo")}</a>
+      <a href="${APP_URL}">${t("الدخول إلى البرنامج", "Log in")}</a>
     </div>
     <div>
       <h4>${t("الشركة", "Company")}</h4>
       <a href="${href(lang, "/contact/")}">${t("تواصل معنا", "Contact")}</a>
-      <a href="${href(lang, "/contact/")}?topic=demo">${t("احجز عرض", "Book a demo")}</a>
+      <a href="${href(lang, "/contact/")}?topic=demo">${t("احجز عرضًا", "Book a demo")}</a>
       <a href="${href(lang, "/privacy/")}">${t("الخصوصية", "Privacy")}</a>
       <a href="${href(lang, "/terms/")}">${t("الشروط", "Terms")}</a>
     </div>
   </div>
-  <div class="wrap foot-bottom">© <span data-year>2026</span> ${t("Rosterzo", "Rosterzo")}. ${t("كل الحقوق محفوظة.", "All rights reserved.")}</div>
+  <div class="wrap foot-bottom">© <span data-year>2026</span> ${t("Rosterzo", "Rosterzo")}. ${t("جميع الحقوق محفوظة.", "All rights reserved.")}</div>
 </footer>
 </body>
 </html>

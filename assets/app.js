@@ -65,7 +65,7 @@
       const cost = v.employees * 4;
       const x = Math.round((saved / cost) * 10) / 10;
       $('[data-res="plan"]', roi).textContent = ar
-        ? `Rosterzo لـ ${v.employees} موظف بـ ${money(cost)} في الشهر` + (x >= 1 ? ` — يعني اللي هتوفّره حوالي ${x} أضعاف التكلفة.` : ".")
+        ? `Rosterzo لـ ${v.employees} موظف بسعر ${money(cost)} شهريًا` + (x >= 1 ? ` — أي أن ما ستوفّره نحو ${x} أضعاف التكلفة.` : ".")
         : `Rosterzo for ${v.employees} employees is ${money(cost)}/month` + (x >= 1 ? ` — you'd save about ${x}× the cost.` : ".");
     };
     roi.addEventListener("input", update);
@@ -159,7 +159,7 @@
     async hotel(root, alive) {
       const want = [2, 1, 1];
       const rows = $$("[data-mb]", root), steps = $$("[data-step]", root), toast = $("[data-toast]", root);
-      const closed = ar ? "مقفول" : "Closed", open = ar ? "محتاج" : "Needed";
+      const closed = ar ? "مغلق" : "Closed", open = ar ? "مطلوب" : "Needed";
       const reset = () => {
         steps.forEach((s) => (s.textContent = 0));
         rows.forEach((r) => { r.classList.remove("open"); $("em", r).textContent = closed; $("b", r).textContent = "0/0"; });
