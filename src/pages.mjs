@@ -1,18 +1,23 @@
 import { tr, href } from "./layout.mjs";
 import { SIGNUP_URL, SUPABASE_URL, SUPABASE_KEY } from "./config.mjs";
-import { pricingCards, money, PRICE, YEARLY_FIRST_YEAR_DISCOUNT } from "./plans.mjs";
+import { pricingCards, money, PRICE, SMALL_PRICE, SMALL_MAX, YEARLY_FIRST_YEAR_DISCOUNT } from "./plans.mjs";
 import { faq } from "./faq.mjs";
 
 export function pricing(lang) {
   const t = tr(lang);
   const m = (n) => money(lang, n);
-  const examples = [10, 30, 75, 150];
+  // [label, monthly price]
+  const examples = [
+    [t(`حتى ${SMALL_MAX} موظفين، موقع واحد`, `Up to ${SMALL_MAX} employees, 1 location`), SMALL_PRICE],
+    [t(`حتى ${SMALL_MAX} موظفين، 3 مواقع`, `Up to ${SMALL_MAX} employees, 3 locations`), SMALL_PRICE * 3],
+    ...[30, 75, 150].map((n) => [t(`${n} موظفًا`, `${n} employees`), n * PRICE]),
+  ];
   return `
 <section class="page-head">
   <div class="wrap">
     <span class="pill">🎁 ${t("الأسبوع الأول مجانًا — دون بطاقة ائتمان", "Your first week is free — no credit card")}</span>
     <h1>${t("أسعار تناسب حجم شركتك", "Pricing that fits your agency")}</h1>
-    <p class="lead">${t(`${m(PRICE)} لكل موظف شهريًا، وجميع المميزات مشمولة. هل يزيد حجم شركتك أو ينقص؟ الفاتورة تتغير معه.`, `${m(PRICE)} per employee per month, with every feature included. Your agency grows or shrinks? So does your bill.`)}</p>
+    <p class="lead">${t(`${m(SMALL_PRICE)} لكل موقع شهريًا للشركات حتى ${SMALL_MAX} موظفين، أو ${m(PRICE)} لكل موظف شهريًا من ${SMALL_MAX + 1} موظفًا. جميع المميزات مشمولة في الحالتين.`, `${m(SMALL_PRICE)} per location per month for companies with up to ${SMALL_MAX} employees, and ${m(PRICE)} per employee per month from ${SMALL_MAX + 1} employees. Every feature included either way.`)}</p>
   </div>
 </section>
 <section class="pricing-page">
@@ -21,8 +26,8 @@ export function pricing(lang) {
     <h2 class="sec-title small">${t("أمثلة على السعر", "Price examples")}</h2>
     <div class="table-wrap">
       <table class="cmp">
-        <thead><tr><th>${t("عدد الموظفين", "Employees")}</th><th>${t("شهري", "Monthly")}</th><th class="us">${t("سنوي — السنة الأولى", "Yearly — year one")}</th></tr></thead>
-        <tbody>${examples.map((n) => `<tr><td>${n}</td><td>${t(`${m(n * PRICE)} شهريًا`, `${m(n * PRICE)} / month`)}</td><td class="us">${t(`${m(Math.round(n * PRICE * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} سنويًا`, `${m(Math.round(n * PRICE * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} / year`)} <s>${m(n * PRICE * 12)}</s></td></tr>`).join("")}</tbody>
+        <thead><tr><th>${t("حجم الشركة", "Company size")}</th><th>${t("شهري", "Monthly")}</th><th class="us">${t("سنوي — السنة الأولى", "Yearly — year one")}</th></tr></thead>
+        <tbody>${examples.map(([label, p]) => `<tr><td>${label}</td><td>${t(`${m(p)} شهريًا`, `${m(p)} / month`)}</td><td class="us">${t(`${m(Math.round(p * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} سنويًا`, `${m(Math.round(p * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} / year`)} <s>${m(p * 12)}</s></td></tr>`).join("")}</tbody>
       </table>
     </div>
     <div class="pay-box">
@@ -129,7 +134,7 @@ export function terms(lang) {
   const t = tr(lang);
   return legal(lang, t("شروط الاستخدام", "Terms of use"), t("20 أكتوبر 2026", "20 October 2026"), [
     [t("التجربة المجانية", "Free trial"), t("تحصل كل شركة جديدة على تجربة مجانية لمدة 7 أيام بجميع المميزات، دون بطاقة ائتمان. بعد التجربة يُغلق الحساب أمام التعديل إلى حين الاشتراك، ولا تُحذف بياناتك.", "Every new company gets a 7-day free trial with all features and no card. Afterwards the account is paused for editing until you subscribe; your data is not deleted.")],
-    [t("الاشتراك والدفع", "Subscription and payment"), t("يُحتسب السعر عن كل موظف يُسجَّل في الشفتات، شهريًا أو سنويًا. للاشتراك السنوي خصم 30% على السنة الأولى فقط، ثم يتجدد بالسعر العادي ما لم نتفق على غير ذلك. الأسعار باليورو ولا تشمل الضريبة، والدفع حاليًا بالتحويل البنكي بفاتورة.", "Pricing is per scheduled employee, billed monthly or yearly. Yearly billing gets 30% off the first year only, then renews at the regular price unless agreed otherwise. Prices are in EUR excluding VAT; payment is currently by bank transfer against an invoice.")],
+    [t("الاشتراك والدفع", "Subscription and payment"), t(`للشركات حتى ${SMALL_MAX} موظفين يُحتسب السعر عن كل موقع عمل، وللشركات من ${SMALL_MAX + 1} موظفًا يُحتسب عن كل موظف يُسجَّل في الشفتات، شهريًا أو سنويًا. للاشتراك السنوي خصم 30% على السنة الأولى فقط، ثم يتجدد بالسعر العادي ما لم نتفق على غير ذلك. الأسعار باليورو ولا تشمل الضريبة، والدفع حاليًا بالتحويل البنكي بفاتورة.`, `Companies with up to ${SMALL_MAX} employees are priced per location; companies with ${SMALL_MAX + 1} or more are priced per scheduled employee, billed monthly or yearly. Yearly billing gets 30% off the first year only, then renews at the regular price unless agreed otherwise. Prices are in EUR excluding VAT; payment is currently by bank transfer against an invoice.`)],
     [t("الإلغاء", "Cancellation"), t("يمكنك إلغاء الاشتراك الشهري في أي وقت، ويسري الإلغاء من الشهر التالي.", "Monthly billing can be cancelled anytime, effective from the next billing month.")],
     [t("بياناتك", "Your data"), t("بياناتك ملك لك. يمكنك طلب نسخة منها أو حذفها في أي وقت.", "Your data belongs to you. You can request an export or deletion at any time.")],
     [t("الاستخدام المسموح", "Acceptable use"), t("يُمنع استخدام البرنامج في أي أمر مخالف للقانون أو محاولة الوصول إلى بيانات شركات أخرى.", "Don't use the service for anything unlawful or try to access other companies' data.")],

@@ -483,3 +483,12 @@ th.us { background: var(--blue-d); color: #fff; }
 .ind-grid span { font-size: 30px; }
 .ind-sub { margin-top: 24px; margin-bottom: 0; }
 @media (max-width: 700px) { .ind-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Pricing: the two prices side by side; the one that applies to the chosen headcount is lit. */
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tier { border: 2px solid var(--border); border-radius: 14px; padding: 12px 14px; display: grid; gap: 2px; opacity: .6; transition: opacity .15s, border-color .15s, background .15s; }
+.tier.on { border-color: var(--blue); background: var(--blue-soft); opacity: 1; }
+.tier small { font-weight: 700; color: var(--text); }
+.tier b { font-size: 38px; line-height: 1.1; unicode-bidi: isolate; }
+.tier span { color: var(--muted); font-size: 13px; }
+.calc[hidden] { display: none; }

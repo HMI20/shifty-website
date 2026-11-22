@@ -22,11 +22,11 @@ export function faq(lang, which = "general") {
     [t("كيف أدفع؟", "How do I pay?"),
       t("حاليًا بالتحويل البنكي بفاتورة شهرية أو سنوية. الدفع الإلكتروني بالبطاقة سيتوفر قريبًا.", "For now by bank transfer against a monthly or yearly invoice. Online card payment is coming soon.")],
     [t("ماذا لو تغيّر عدد موظفيّ؟", "What if my headcount changes?"),
-      t("تُحسب الفاتورة على العدد الفعلي للموظفين. زِد أو قلِّل في أي وقت، ويظهر الفرق في الفاتورة التالية.", "You're billed for your actual number of employees. Add or remove people anytime; the difference shows on your next invoice.")],
+      t("تُحسب الفاتورة على العدد الفعلي. زِد أو قلِّل في أي وقت، ويظهر الفرق في الفاتورة التالية. وإذا تجاوز عدد موظفيك 10 تنتقل من السعر لكل موقع إلى السعر لكل موظف.", "You're billed for your actual numbers. Add or remove people anytime; the difference shows on your next invoice. Once you pass 10 employees you move from per-location to per-employee pricing.")],
     [t("هل يوجد عقد أو التزام؟", "Is there a contract?"),
       t("لا. يمكنك إلغاء الاشتراك الشهري في أي وقت. وإذا دفعت سنويًا تحصل على خصم 30% على السنة الأولى.", "No. Monthly billing can be cancelled anytime. Pay yearly and get 30% off your first year.")],
     [t("مَن يُحتسب «موظفًا»؟", "Who counts as an employee?"),
-      t("كل موظف مسجَّل في Rosterzo ويُسجَّل في الشفتات. الفروع والعملاء ومشرفوك لا يُحتسبون.", "Anyone in Rosterzo who gets scheduled into shifts. Locations, clients and your office staff don't count.")],
+      t("من 11 موظفًا: كل موظف مسجَّل في Rosterzo ويُسجَّل في الشفتات، أما المواقع والعملاء ومشرفوك فلا يُحتسبون. حتى 10 موظفين: يُحتسب السعر بعدد المواقع لا بعدد الموظفين.", "From 11 employees: anyone in Rosterzo who gets scheduled into shifts — locations, clients and your office staff don't count. Up to 10 employees: you're priced by the number of locations, not people.")],
   ];
   const list = which === "billing" ? billing : general;
   return `<div class="faq">${list.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div>`;

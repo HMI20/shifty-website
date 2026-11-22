@@ -1,7 +1,7 @@
 import { tr, href } from "./layout.mjs";
 import { SIGNUP_URL, DEMO_URL } from "./config.mjs";
 import { boardDemo, hotelDemo, rulesDemo, hoursDemo, imageDemo, syncDemo } from "./demos.mjs";
-import { pricingCards } from "./plans.mjs";
+import { pricingCards, money, PRICE, SMALL_PRICE, SMALL_MAX } from "./plans.mjs";
 import { faq } from "./faq.mjs";
 
 export function home(lang) {
@@ -209,8 +209,8 @@ export function home(lang) {
 
 <section class="pricing-teaser" id="pricing">
   <div class="wrap">
-    <h2 class="sec-title">${t("سعر واحد بسيط: بحسب عدد موظفيك.", "One simple price: per employee.")}</h2>
-    <p class="sec-sub">${t("ابدأ مجانًا 7 أيام، ثم ادفع فقط عن الموظفين الذين تُشغّلهم.", "Start free for 7 days, then pay only for the people you schedule.")}</p>
+    <h2 class="sec-title">${t("سعر بسيط يناسب حجم شركتك.", "Simple pricing that fits your size.")}</h2>
+    <p class="sec-sub">${t(`ابدأ مجانًا 7 أيام. حتى ${SMALL_MAX} موظفين: ${money(lang, SMALL_PRICE)} لكل موقع شهريًا. من ${SMALL_MAX + 1} موظفًا: ${money(lang, PRICE)} لكل موظف شهريًا.`, `Start free for 7 days. Up to ${SMALL_MAX} employees: ${money(lang, SMALL_PRICE)} per location per month. From ${SMALL_MAX + 1} employees: ${money(lang, PRICE)} per employee per month.`)}</p>
     ${pricingCards(lang)}
   </div>
 </section>

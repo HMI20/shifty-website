@@ -31,16 +31,26 @@
     const scope = box.parentElement;
     const group = $(".billing-toggle", scope);
     const range = $("[data-emp-range]", box);
+    const locRange = $("[data-loc-range]", box);
     let mode = "monthly";
     const update = () => {
       const n = Number(range.value);
       $("[data-emp]", box).textContent = n;
-      const per = Number(box.dataset[mode === "monthly" ? "priceMonthly" : "priceYearly"]);
-      const total = mode === "monthly" ? n * per : Math.round(n * per * 12);
+      // Up to data-small-max employees the price is per location, above it per employee.
+      const small = n <= Number(box.dataset.smallMax);
+      const locs = Number(locRange.value);
+      $("[data-loc]", box).textContent = locs;
+      $("[data-loc-wrap]", box).hidden = !small;
+      $$("[data-tier]", box).forEach((el) => el.classList.toggle("on", (el.dataset.tier === "small") === small));
+      const d = box.dataset;
+      const units = small ? locs : n;
+      const full = Number(small ? d.smallMonthly : d.priceMonthly);
+      const per = mode === "monthly" ? full : Number(small ? d.smallYearly : d.priceYearly);
+      const total = mode === "monthly" ? units * per : Math.round(units * per * 12);
       $("[data-total]", box).textContent = money(total);
       const was = $("[data-was]", box);
       was.hidden = mode === "monthly";
-      was.textContent = money(n * Number(box.dataset.priceMonthly) * 12);
+      was.textContent = money(units * full * 12);
     };
     group?.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-billing]");
@@ -51,6 +61,7 @@
       update();
     });
     range.addEventListener("input", update);
+    locRange.addEventListener("input", update);
     update();
   });
 
@@ -62,11 +73,13 @@
       $$("[data-out]", roi).forEach((o) => (o.textContent = v[o.dataset.out]));
       const hours = Math.round(v.hours * 0.7 * 4.33);
       const saved = Math.round(hours * v.rate);
-      const cost = v.employees * 4;
+      // Same prices as src/plans.mjs: up to 10 employees is 50 per location (one location assumed here).
+      const small = v.employees <= 10;
+      const cost = small ? 50 : v.employees * 4;
       const x = Math.round((saved / cost) * 10) / 10;
       $('[data-res="plan"]', roi).textContent = ar
-        ? `Rosterzo لـ ${v.employees} موظف بسعر ${money(cost)} شهريًا` + (x >= 1 ? ` — أي أن ما ستوفّره نحو ${x} أضعاف التكلفة.` : ".")
-        : `Rosterzo for ${v.employees} employees is ${money(cost)}/month` + (x >= 1 ? ` — you'd save about ${x}× the cost.` : ".");
+        ? (small ? `Rosterzo لموقع واحد (حتى 10 موظفين) بسعر ${money(cost)} شهريًا` : `Rosterzo لـ ${v.employees} موظف بسعر ${money(cost)} شهريًا`) + (x >= 1 ? ` — أي أن ما ستوفّره نحو ${x} أضعاف التكلفة.` : ".")
+        : (small ? `Rosterzo for one location (up to 10 employees) is ${money(cost)}/month` : `Rosterzo for ${v.employees} employees is ${money(cost)}/month`) + (x >= 1 ? ` — you'd save about ${x}× the cost.` : ".");
     };
     roi.addEventListener("input", update);
     update();
