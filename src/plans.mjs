@@ -4,12 +4,15 @@ import { SIGNUP_URL } from "./config.mjs";
 // Two prices, both EUR per month excluding VAT and with every feature:
 // companies with up to SMALL_MAX employees pay SMALL_PRICE per location,
 // larger ones pay PRICE per scheduled employee.
-// Paying yearly takes 30% off the first year of either.
+// Paying yearly takes 30% off the first year of either, and the yearly total is then
+// rounded down to end in 9 (see charm).
 // app.js (savings calculator) repeats these numbers.
 export const PRICE = 4;
-export const SMALL_PRICE = 50;
+export const SMALL_PRICE = 49.99;
 export const SMALL_MAX = 10;
 export const YEARLY_FIRST_YEAR_DISCOUNT = 0.3;
+/** A yearly total as advertised: rounded down to the nearest amount ending in 9 (1008 → 999, 1260 → 1259). app.js has the same rule. */
+export const charm = (n) => Math.floor((n - 9 + 1e-6) / 10) * 10 + 9;
 const yearly = (n) => +(n * (1 - YEARLY_FIRST_YEAR_DISCOUNT)).toFixed(2);
 const YEARLY = yearly(PRICE);
 const SMALL_YEARLY = yearly(SMALL_PRICE);

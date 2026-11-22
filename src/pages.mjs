@@ -1,6 +1,6 @@
 import { tr, href } from "./layout.mjs";
 import { SIGNUP_URL, SUPABASE_URL, SUPABASE_KEY } from "./config.mjs";
-import { pricingCards, money, PRICE, SMALL_PRICE, SMALL_MAX, YEARLY_FIRST_YEAR_DISCOUNT } from "./plans.mjs";
+import { pricingCards, money, charm, PRICE, SMALL_PRICE, SMALL_MAX, YEARLY_FIRST_YEAR_DISCOUNT } from "./plans.mjs";
 import { faq } from "./faq.mjs";
 
 export function pricing(lang) {
@@ -27,7 +27,7 @@ export function pricing(lang) {
     <div class="table-wrap">
       <table class="cmp">
         <thead><tr><th>${t("حجم الشركة", "Company size")}</th><th>${t("شهري", "Monthly")}</th><th class="us">${t("سنوي — السنة الأولى", "Yearly — year one")}</th></tr></thead>
-        <tbody>${examples.map(([label, p]) => `<tr><td>${label}</td><td>${t(`${m(p)} شهريًا`, `${m(p)} / month`)}</td><td class="us">${t(`${m(Math.round(p * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} سنويًا`, `${m(Math.round(p * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} / year`)} <s>${m(p * 12)}</s></td></tr>`).join("")}</tbody>
+        <tbody>${examples.map(([label, p]) => `<tr><td>${label}</td><td>${t(`${m(p)} شهريًا`, `${m(p)} / month`)}</td><td class="us">${t(`${m(charm(p * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} سنويًا`, `${m(charm(p * 12 * (1 - YEARLY_FIRST_YEAR_DISCOUNT)))} / year`)} <s>${m(p * 12)}</s></td></tr>`).join("")}</tbody>
       </table>
     </div>
     <div class="pay-box">

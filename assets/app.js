@@ -24,7 +24,7 @@
 
   // ---------- pricing: monthly / yearly and the per-employee total ----------
   const money = (n) => {
-    const v = Number.isInteger(n) ? n.toLocaleString("en") : n.toFixed(2);
+    const v = Number.isInteger(n) ? n.toLocaleString("en") : n.toLocaleString("en", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     return ar ? `${v}€` : `€${v}`;
   };
   $$("[data-price]").forEach((box) => {
@@ -46,7 +46,8 @@
       const units = small ? locs : n;
       const full = Number(small ? d.smallMonthly : d.priceMonthly);
       const per = mode === "monthly" ? full : Number(small ? d.smallYearly : d.priceYearly);
-      const total = mode === "monthly" ? units * per : Math.round(units * per * 12);
+      // A yearly total is rounded down to end in 9 (1008 → 999), as in src/plans.mjs.
+      const total = mode === "monthly" ? units * per : Math.floor((units * per * 12 - 9 + 1e-6) / 10) * 10 + 9;
       $("[data-total]", box).textContent = money(total);
       const was = $("[data-was]", box);
       was.hidden = mode === "monthly";
@@ -73,9 +74,9 @@
       $$("[data-out]", roi).forEach((o) => (o.textContent = v[o.dataset.out]));
       const hours = Math.round(v.hours * 0.7 * 4.33);
       const saved = Math.round(hours * v.rate);
-      // Same prices as src/plans.mjs: up to 10 employees is 50 per location (one location assumed here).
+      // Same prices as src/plans.mjs: up to 10 employees is 49.99 per location (one location assumed here).
       const small = v.employees <= 10;
-      const cost = small ? 50 : v.employees * 4;
+      const cost = small ? 49.99 : v.employees * 4;
       const x = Math.round((saved / cost) * 10) / 10;
       $('[data-res="plan"]', roi).textContent = ar
         ? (small ? `Rosterzo لموقع واحد (حتى 10 موظفين) بسعر ${money(cost)} شهريًا` : `Rosterzo لـ ${v.employees} موظف بسعر ${money(cost)} شهريًا`) + (x >= 1 ? ` — أي أن ما ستوفّره نحو ${x} أضعاف التكلفة.` : ".")
